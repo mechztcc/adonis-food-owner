@@ -1,4 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import BadRequestException from 'App/Exceptions/BadRequestException'
 import User from 'App/Models/User'
 import CreateUserValidator from 'App/Validators/CreateUserValidator'
 
@@ -9,7 +10,7 @@ export default class UsersController {
 
     const userExists = await User.findBy('email', payload.email)
     if(userExists) {
-      
+      throw new BadRequestException('Email already in use', 409)
     }
 
     const user = await User.create(payload)
