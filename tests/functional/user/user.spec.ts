@@ -12,5 +12,7 @@ test.group('User user', () => {
     const response = await client.post('/users').json(user);
     console.log(response.body());
     
+    response.assertStatus(201)
+    response.assertBodyContains({ ...user});
   })
 })
