@@ -25,4 +25,6 @@ test.group('User user', () => {
 
     response.assertBody({ code: 'BAD_REQUEST', message: 'Email already in use', status: 409 })
   })
+
+  
 })

@@ -17,4 +17,8 @@ export default class UsersController {
 
     return response.created(user)
   }
+
+  public async find({ request, response}: HttpContextContract) {
+    
+  }
 }
