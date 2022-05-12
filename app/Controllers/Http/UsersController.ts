@@ -6,9 +6,13 @@ export default class UsersController {
   public async store({ request, response }: HttpContextContract) {
     const payload = await request.validate(CreateUserValidator)
 
-    console.log(payload);
+
+    const userExists = await User.findBy('email', payload.email)
+    if(userExists) {
+      
+    }
+
     const user = await User.create(payload)
-    
 
     return response.created(user)
   }
