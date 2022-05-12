@@ -6,7 +6,9 @@ export default class UsersController {
   public async store({ request, response }: HttpContextContract) {
     const payload = await request.validate(CreateUserValidator)
 
-    const user = User.create(payload)
+    console.log(payload);
+    const user = await User.create(payload)
+    
 
     return response.created(user)
   }
