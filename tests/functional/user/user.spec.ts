@@ -33,7 +33,6 @@ test.group('User user', () => {
     const user = await UserFactory.create()
 
     const response = await client.get(`/users/${user.id}`)
-    console.log(response.body())
 
     const body = response.body()
     response.assertBodyContains({ id: user.id })
