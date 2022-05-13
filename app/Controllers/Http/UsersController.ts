@@ -21,7 +21,9 @@ export default class UsersController {
   public async find({ request, response}: HttpContextContract) {
     const id = await request.param('id')
 
-    
+    const user = await User.findBy('id', id)
+
+    return response.accepted(user)
 
   }
 }
