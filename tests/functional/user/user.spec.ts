@@ -14,6 +14,7 @@ test.group('User user', () => {
 
     response.assertStatus(201)
     assert.exists(body.id, 'User not created')
+    
   })
 
   test('It should be return 409 when try to create a user with email already in use', async ({
@@ -34,6 +35,8 @@ test.group('User user', () => {
     const response = await client.get(`/users/${user.id}`)
     console.log(response.body())
 
+    const body = response.body()
     response.assertBodyContains({ id: user.id })
+    assert.exists(body.status, 'User status has not created')
   })
 })
