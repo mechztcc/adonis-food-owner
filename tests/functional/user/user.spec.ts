@@ -10,8 +10,10 @@ test.group('User user', () => {
     }
     const response = await client.post('/users').json(user)
 
+    const body = response.body()
+
     response.assertStatus(201)
-    response.assertBodyContains({ ...user })
+    assert.exists(body.id, 'User not created')
   })
 
   test('It should be return 409 when try to create a user with email already in use', async ({
@@ -26,12 +28,11 @@ test.group('User user', () => {
     response.assertBody({ code: 'BAD_REQUEST', message: 'Email already in use', status: 409 })
   })
 
-  test('It should be find a user by id', async ({client, assert }) =>{
+  test('It should be find a user by id', async ({ client, assert }) => {
     const user = await UserFactory.create()
 
     const response = await client.get(`/users/${user.id}`)
-    console.log(response.body());
-    
+    console.log(response.body())
 
     response.assertBodyContains({ id: user.id })
   })
