@@ -19,6 +19,9 @@ export default class UsersController {
   }
 
   public async find({ request, response}: HttpContextContract) {
+    const id = await request.param('id')
+
     
+
   }
 }

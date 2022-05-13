@@ -26,5 +26,13 @@ test.group('User user', () => {
     response.assertBody({ code: 'BAD_REQUEST', message: 'Email already in use', status: 409 })
   })
 
-  
+  test('It should be find a user by id', async ({client, assert }) =>{
+    const user = await UserFactory.create()
+
+    const response = await client.get(`/users/${user.id}`)
+    console.log(response.body());
+    
+
+    response.assertBodyContains({ id: user.id })
+  })
 })
