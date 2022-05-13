@@ -1,0 +1,28 @@
+
+
+-- USER --
+[x] Create User
+[x] Auth User
+[ ] Update User
+[ ] Block User access
+[ ] Make relation With Store
+
+-- STORE --
+[ ] Create Store
+[ ] Make relation With User
+[ ] Update Store
+[ ] Delete Store
+[ ] make relation With Categories
+
+-- CATEGORIES -- 
+[ ] Create Categories
+[ ] Update Categories
+[ ] Delete Categories
+[ ] Make relation With Products
+
+-- PRODUCTS --
+[ ] Create Products
+[ ] Update Products
+[ ] Delete Products
+
+
