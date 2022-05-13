@@ -1,4 +1,3 @@
-import Hash from '@ioc:Adonis/Core/Hash'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import BadRequestException from 'App/Exceptions/BadRequestException'
 import User from 'App/Models/User'
@@ -12,10 +11,6 @@ export default class UsersController {
     if (userExists) {
       throw new BadRequestException('Email already in use', 409)
     }
-
-    const hashedPass = await Hash.make(payload.password)
-
-    payload.password = hashedPass
 
     const user = await User.create(payload)
 
