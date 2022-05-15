@@ -6,7 +6,7 @@ test.group('Store store', () => {
     const user = await UserFactory.create()
 
     const response = await client
-      .post('/store')
+      .post('/stores')
       .json({
         name: 'Store 01',
         description: 'Description store',
