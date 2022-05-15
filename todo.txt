@@ -13,7 +13,7 @@
 [ ] Delete Store
 [X] Open / Close Store
 [X] List all Stores
-[ ] List all Stores by User
+[X] List all Stores by User
 [ ] Make relations with Address
 [ ] make relation With Categories
 

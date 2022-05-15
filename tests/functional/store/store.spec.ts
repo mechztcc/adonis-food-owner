@@ -80,12 +80,10 @@ test.group('Store store', () => {
     const response = await client.get(`/stores/users/${user.id}`)
 
     const body = response.body()
-    console.log(body)
 
     response.assertStatus(202)
     assert.exists(body.stores, 'Stores not found')
     assert.equal(body.stores[0].id, store.id)
     assert.notEqual(body.stores[0].id, anotherStore.id)
-
   })
 })
