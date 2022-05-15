@@ -2,6 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Store from 'App/Models/Store'
 import User from 'App/Models/User'
 import CreateStoreValidator from 'App/Validators/CreateStoreValidator'
+import OpenStoreValidator from 'App/Validators/OpenStoreValidator'
 import BadRequestException from '../../Exceptions/BadRequestException'
 
 export default class StoresController {
@@ -19,7 +20,7 @@ export default class StoresController {
 
   public async index({ request, response }: HttpContextContract) {
     const { page = 1 } = request.qs()
-    const limit = 10    
+    const limit = 10
 
     const stores = await Store.query()
       .select('*')
@@ -27,5 +28,9 @@ export default class StoresController {
       .offset(page * limit - limit)
 
     return response.accepted({ stores })
+  }
+
+  public async open({ request, response }: HttpContextContract) {
+    const payload = await request.validate(OpenStoreValidator)
   }
 }
