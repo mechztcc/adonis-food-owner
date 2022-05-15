@@ -30,11 +30,9 @@ test.group('Store store', () => {
       user_id: 200,
     })
 
-    
     const body = response.body()
-    console.log(body);
-    
-    response.assertStatus(409)
 
+    response.assertStatus(409)
+    response.assertBodyContains({ code: 'BAD_REQUEST', message: 'User not found.', status: 409 })
   })
 })
