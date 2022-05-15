@@ -14,6 +14,18 @@ export default class StoresController {
     }
 
     const store = await Store.create(payload)
-    response.created(store)
+    return response.created(store)
+  }
+
+  public async index({ request, response }: HttpContextContract) {
+    const { page } = request.qs()
+    const limit = 10
+
+    const stores = await Store.query()
+      .select('*')
+      .limit(10)
+      .offset(page * limit - limit)
+
+    return response.accepted({ stores })
   }
 }

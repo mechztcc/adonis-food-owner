@@ -46,6 +46,7 @@ test.group('Store store', () => {
     const body = response.body()
     console.log(body)
 
+    response.assertStatus(202)
     assert.exists(body.stores)
   })
 })
