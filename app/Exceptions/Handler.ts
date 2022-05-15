@@ -31,5 +31,7 @@ export default class ExceptionHandler extends HttpExceptionHandler {
         status: 404,
       })
     }
+
+    return super.handle(error, ctx)
   }
 }

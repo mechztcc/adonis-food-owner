@@ -11,7 +11,7 @@
 [X] Make relation With User
 [ ] Update Store
 [ ] Delete Store
-[ ] Open / Close Store
+[X] Open / Close Store
 [X] List all Stores
 [ ] Make relations with Address
 [ ] make relation With Categories

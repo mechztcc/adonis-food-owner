@@ -55,7 +55,18 @@ test.group('Store store', () => {
     const store = await StoreFactory.merge({ user_id: user.id }).create()
 
     const response = await client.patch(`/stores/${store.id}`).json({ opened: true })
-    
+
     response.assertStatus(204)
+  })
+
+  test('It should  be return 404 when store has not found', async ({ client, assert }) => {
+    const user = await UserFactory.create()
+
+    const store = await StoreFactory.merge({ user_id: user.id }).create()
+
+    const response = await client.patch(`/stores/999`).json({ opened: true })
+
+    response.assertStatus(404)
+    response.assertBodyContains({ code: 'BAD_REQUEST', message: 'Resource not found', status: 404 })
   })
 })
