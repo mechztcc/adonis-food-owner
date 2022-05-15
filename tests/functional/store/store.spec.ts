@@ -1,20 +1,21 @@
 import { test } from '@japa/runner'
-import { StoreFactory, UserFactory } from 'Database/factories'
+import { UserFactory } from 'Database/factories'
 
 test.group('Store store', () => {
-  test('It should be create a store', async ({ client }) => {
+  test('It should be create a store', async ({ client, assert }) => {
     const user = await UserFactory.create()
 
-    const response = await client
-      .post('/stores')
-      .json({
-        name: 'Store 01',
-        description: 'Description store',
-        active: true,
-        opened: false,
-        user_id: user.id,
-      })
+    const response = await client.post('/stores').json({
+      name: 'Store 01',
+      description: 'Description store',
+      active: true,
+      opened: false,
+      user_id: user.id,
+    })
+
+    const body = response.body()
 
     response.assertStatus(201)
+    assert.exists(body.id, 'Store has not created')
   })
 })
