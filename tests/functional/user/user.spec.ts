@@ -43,6 +43,7 @@ test.group('User user', () => {
     const user = await UserFactory.merge({ password: plainPass }).create()
 
     const response = await client.put(`/users/${user.id}`).json({ password: '654321' })
-    response.assertStatus(200)
+    response.assertStatus(202)
+    response.assertBodyContains({ message: 'User updated!'})
   })
 })

@@ -36,6 +36,6 @@ export default class UsersController {
     user.password = payload.password
     await user.save()
 
-    return response.accepted(user)
+    return response.accepted({ message: 'User updated!'})
   }
 }
