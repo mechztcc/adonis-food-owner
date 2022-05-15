@@ -1,18 +1,24 @@
 
 
 -- USER --
-[x] Create User
-[x] Auth User
+[X] Create User
+[X] Auth User
 [ ] Update User
 [ ] Block User access
-[ ] Make relation With Store
+[X] Make relation With Store
 
 -- STORE --
-[ ] Create Store
-[ ] Make relation With User
+[X] Create Store
+[X] Make relation With User
 [ ] Update Store
 [ ] Delete Store
+[ ] List all Stores
+[ ] Make relations with Address
 [ ] make relation With Categories
+
+-- ADDRESS --
+[ ] Create Address
+[ ] Update Address
 
 -- CATEGORIES -- 
 [ ] Create Categories

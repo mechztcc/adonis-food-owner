@@ -1,5 +1,5 @@
 import { test } from '@japa/runner'
-import { UserFactory } from 'Database/factories'
+import { UserFactory, StoreFactory } from 'Database/factories'
 
 test.group('Store store', () => {
   test('It should be create a store', async ({ client, assert }) => {
@@ -34,5 +34,18 @@ test.group('Store store', () => {
 
     response.assertStatus(409)
     response.assertBodyContains({ code: 'BAD_REQUEST', message: 'User not found.', status: 409 })
+  })
+
+  test('It should be return a list of stores', async ({ client, assert }) => {
+    const user = await UserFactory.create()
+
+    const store = await StoreFactory.merge({ user_id: user.id }).create()
+
+    const response = await client.get('/stores?page=1')
+
+    const body = response.body()
+    console.log(body)
+
+    assert.exists(body.stores)
   })
 })

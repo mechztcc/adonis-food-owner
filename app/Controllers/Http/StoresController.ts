@@ -6,14 +6,14 @@ import BadRequestException from '../../Exceptions/BadRequestException'
 
 export default class StoresController {
   public async store({ request, response }: HttpContextContract) {
-		const payload = await request.validate(CreateStoreValidator)
+    const payload = await request.validate(CreateStoreValidator)
 
-		const userExists = await User.findBy('id', payload.user_id)
-		if(!userExists) {
-			throw new BadRequestException('User not found.', 409);
-		}
+    const userExists = await User.findBy('id', payload.user_id)
+    if (!userExists) {
+      throw new BadRequestException('User not found.', 409)
+    }
 
-		const store = await Store.create(payload)
+    const store = await Store.create(payload)
     response.created(store)
   }
 }
