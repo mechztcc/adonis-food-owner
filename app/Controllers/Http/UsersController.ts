@@ -24,4 +24,8 @@ export default class UsersController {
 
     return response.accepted(user)
   }
+
+  public async update({ request, response }: HttpContextContract) {
+    
+  }
 }
