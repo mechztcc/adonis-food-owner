@@ -21,7 +21,9 @@ export default class Store extends BaseModel {
   @column()
   public user_id: number
 
-  @hasOne(() => User)
+  @hasOne(() => User, {
+    foreignKey: 'user_id'
+  })
   public user: HasOne<typeof User>
 
   @column.dateTime({ autoCreate: true })

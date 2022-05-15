@@ -72,17 +72,20 @@ test.group('Store store', () => {
 
   test('It should be return all stores by user_id', async ({ client, assert }) => {
     const user = await UserFactory.create()
+    const anotherUser = await UserFactory.create()
 
     const store = await StoreFactory.merge({ user_id: user.id }).create()
-    await StoreFactory.merge({ user_id: 200 }).create()
+    const anotherStore = await StoreFactory.merge({ user_id: anotherUser.id }).create()
 
-    const response = await client.get(`/stores/users/:id`)
+    const response = await client.get(`/stores/users/${user.id}`)
 
-    console.log(response.body());
-    
     const body = response.body()
+    console.log(body)
 
-    response.assertStatus(201)
-    assert.exists(body.stores)
+    response.assertStatus(202)
+    assert.exists(body.stores, 'Stores not found')
+    assert.equal(body.stores[0].id, store.id)
+    assert.notEqual(body.stores[0].id, anotherStore.id)
+
   })
 })

@@ -34,12 +34,20 @@ export default class StoresController {
     const payload = await request.validate(OpenStoreValidator)
 
     const id = request.param('id')
-    
+
     const store = await Store.findByOrFail('id', id)
     store.opened = payload.opened
 
     store.save()
 
     return response.noContent()
+  }
+
+  public async findAllByUser({ request, response }: HttpContextContract) {
+    const id = await request.param('id')
+
+    const stores = await Store.query().select('*').where('user_id', id)
+
+    return response.accepted({ stores })
   }
 }
