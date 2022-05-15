@@ -44,7 +44,6 @@ test.group('Store store', () => {
     const response = await client.get('/stores?page=1')
 
     const body = response.body()
-    console.log(body)
 
     response.assertStatus(202)
     assert.exists(body.stores)

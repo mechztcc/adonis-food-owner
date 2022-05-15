@@ -3,7 +3,7 @@
 -- USER --
 [X] Create User
 [X] Auth User
-[ ] Update User
+[X] Update User
 [X] Make relation With Store
 
 -- STORE --

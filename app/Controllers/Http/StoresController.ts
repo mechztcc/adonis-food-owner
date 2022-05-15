@@ -18,8 +18,11 @@ export default class StoresController {
   }
 
   public async index({ request, response }: HttpContextContract) {
-    const { page } = request.qs()
+    const { page = 1 } = request.qs()
     const limit = 10
+
+    console.log(page);
+    
 
     const stores = await Store.query()
       .select('*')
