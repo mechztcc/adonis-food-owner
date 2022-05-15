@@ -14,7 +14,6 @@ test.group('User user', () => {
 
     response.assertStatus(201)
     assert.exists(body.id, 'User not created')
-    
   })
 
   test('It should be return 409 when try to create a user with email already in use', async ({
@@ -37,5 +36,13 @@ test.group('User user', () => {
     const body = response.body()
     response.assertBodyContains({ id: user.id })
     assert.exists(body.status, 'User status has not created')
+  })
+
+  test('It should be update a valid user', async ({ client, assert }) => {
+    const plainPass = '123456'
+    const user = await UserFactory.merge({ password: plainPass }).create()
+
+    const response = await client.put(`/users/${user.id}`).json({ password: '654321' })
+    response.assertStatus(200)
   })
 })
