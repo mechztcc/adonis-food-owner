@@ -48,4 +48,13 @@ test.group('Store store', () => {
     response.assertStatus(202)
     assert.exists(body.stores)
   })
+
+  test('It should be OPEN store', async ({ client, assert }) => {
+    const user = await UserFactory.create()
+
+    const store = await StoreFactory.merge({ user_id: user.id }).create()
+
+    const response = await client.patch(`/stores/${store.id}`).json({ opened: true })
+    response.assertStatus(200)
+  })
 })
