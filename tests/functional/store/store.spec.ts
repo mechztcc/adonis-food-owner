@@ -69,4 +69,20 @@ test.group('Store store', () => {
     response.assertStatus(404)
     response.assertBodyContains({ code: 'BAD_REQUEST', message: 'Resource not found', status: 404 })
   })
+
+  test('It should be return all stores by user_id', async ({ client, assert }) => {
+    const user = await UserFactory.create()
+
+    const store = await StoreFactory.merge({ user_id: user.id }).create()
+    await StoreFactory.merge({ user_id: 200 }).create()
+
+    const response = await client.get(`/stores/users/:id`)
+
+    console.log(response.body());
+    
+    const body = response.body()
+
+    response.assertStatus(201)
+    assert.exists(body.stores)
+  })
 })
