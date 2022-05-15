@@ -18,4 +18,23 @@ test.group('Store store', () => {
     response.assertStatus(201)
     assert.exists(body.id, 'Store has not created')
   })
+
+  test('It should be return 409 when user has not found', async ({ client, assert }) => {
+    const user = await UserFactory.create()
+
+    const response = await client.post('/stores').json({
+      name: 'Store 01',
+      description: 'Description store',
+      active: true,
+      opened: false,
+      user_id: 200,
+    })
+
+    
+    const body = response.body()
+    console.log(body);
+    
+    response.assertStatus(409)
+
+  })
 })
