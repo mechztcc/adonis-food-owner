@@ -30,7 +30,16 @@ export default class StoresController {
     return response.accepted({ stores })
   }
 
-  public async open({ request, response }: HttpContextContract) {
+  public async openOrClose({ request, response }: HttpContextContract) {
     const payload = await request.validate(OpenStoreValidator)
+
+    const id = request.param('id')
+    
+    const store = await Store.findByOrFail('id', id)
+    store.opened = payload.opened
+
+    store.save()
+
+    return response.noContent()
   }
 }

@@ -55,6 +55,7 @@ test.group('Store store', () => {
     const store = await StoreFactory.merge({ user_id: user.id }).create()
 
     const response = await client.patch(`/stores/${store.id}`).json({ opened: true })
-    response.assertStatus(200)
+    
+    response.assertStatus(204)
   })
 })
