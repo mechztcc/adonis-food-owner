@@ -1,5 +1,5 @@
 import { test } from '@japa/runner'
-import { UserFactory, StoreFactory } from 'Database/factories'
+import { StoreFactory, UserFactory } from 'Database/factories'
 
 test.group('Store store', () => {
   test('It should be create a store', async ({ client, assert }) => {
@@ -85,6 +85,5 @@ test.group('Store store', () => {
     response.assertStatus(202)
     assert.exists(body.meta)
     assert.exists(body.data)
-    
   })
 })
