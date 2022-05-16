@@ -10,6 +10,7 @@ export default class Addresses extends BaseSchema {
       table.string('street').notNullable()
       table.string('number').notNullable()
       table.string('city').notNullable()
+      table.string('state').notNullable()
       table.string('complement')
       table.integer('user_id').unsigned().notNullable().references('id').inTable('users')
       table.timestamp('created_at', { useTz: true })

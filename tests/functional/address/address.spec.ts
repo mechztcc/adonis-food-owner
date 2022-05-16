@@ -19,6 +19,8 @@ test.group('Address address', () => {
     const response = await client.post('/addresses').json(address)
 
     const body = await response.body()
+    console.log(body);
+    
     assert.exists(body.id)
   })
 })
