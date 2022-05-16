@@ -45,12 +45,14 @@ export default class StoresController {
 
   public async findAllByUser({ request, response }: HttpContextContract) {
     const id = await request.param('id')
+    const { page } = request.qs()
 
     const stores = await Store.query()
       .select('*')
       .whereHas('user', (query) => {
         query.where('id', id)
       })
+      .paginate(page)
 
     return response.accepted({ stores })
   }
