@@ -13,4 +13,16 @@ export default class AddressesController {
 
     return response.created(address)
   }
+
+  public async findByUser({ request, response }: HttpContextContract) {
+    const id = await request.param('id')
+
+    const address = await Address.query()
+      .select('*')
+      .whereHas('user', (query) => {
+        query.where('user_id', id)
+      })
+
+    return response.accepted(address)
+  }
 }
