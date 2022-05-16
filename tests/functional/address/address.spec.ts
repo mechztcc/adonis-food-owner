@@ -1,5 +1,5 @@
 import { test } from '@japa/runner'
-import { UserFactory } from 'Database/factories'
+import { AddressFactory, UserFactory } from 'Database/factories'
 
 test.group('Address address', () => {
   test('It should be create a address to valid user', async ({ client, assert }) => {
@@ -39,5 +39,18 @@ test.group('Address address', () => {
     const body = await response.body()
 
     response.assertBodyContains({ code: 'BAD_REQUEST', message: 'Resource not found', status: 404 })
+  })
+
+  test('It should return a address by user', async ({ client, assert }) => {
+    const user = await UserFactory.create()
+    const address = await AddressFactory.with('user').create()
+    const attr = address.$attributes
+
+    const response = await client.get(`/addresses/users/${attr.userId}`)
+
+    const body = response.body()
+
+    assert.exists(body)
+    assert.exists(body[0].id, 'Address not found')
   })
 })
