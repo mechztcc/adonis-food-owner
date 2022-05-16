@@ -46,18 +46,12 @@ export default class StoresController {
   public async findAllByUser({ request, response }: HttpContextContract) {
     const id = await request.param('id')
 
-    // const stores = await Store.query().select('*').where('user_id', id)
-    const stores = await Store.query().select('*').whereHas('user', (query) => {
-      query.where('id', id)
-    })
+    const stores = await Store.query()
+      .select('*')
+      .whereHas('user', (query) => {
+        query.where('id', id)
+      })
 
-    const users = await User.query().select('*').whereHas('store', (query) => {
-      query.where('userId', id)
-    })
-
-    console.log(User.$getRelation('store').relationName);
-    
-
-    return response.accepted({ stores, users })
+    return response.accepted({ stores })
   }
 }
