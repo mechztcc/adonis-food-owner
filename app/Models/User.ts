@@ -19,7 +19,9 @@ export default class User extends BaseModel {
   @column()
   public status: string
 
-  @hasOne(() => Store)
+  @hasOne(() => Store, {
+    foreignKey: 'userId'
+  })
   public store: HasOne<typeof Store>
 
   @column.dateTime({ autoCreate: true })

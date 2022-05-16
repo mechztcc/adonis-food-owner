@@ -32,4 +32,5 @@
 [ ] Update Products
 [ ] Delete Products
 
-
+-- DEPLOY --
+[ ] Prepare docker image
