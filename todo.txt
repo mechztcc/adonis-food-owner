@@ -14,13 +14,12 @@
 [X] Open / Close Store
 [X] List all Stores
 [X] List all Stores by User
-[ ] Make relations with Address
 [ ] make relation With Categories
 
 -- ADDRESS --
 [X] Create Address
 [ ] Update Address
-[ ] Show Address By Store
+[X] Show Address By User
 
 -- CATEGORIES -- 
 [ ] Create Categories
