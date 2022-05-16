@@ -19,13 +19,12 @@ export default class StoresController {
   }
 
   public async index({ request, response }: HttpContextContract) {
-    const { page = 1 } = request.qs()
-    const limit = 10
+    const { page } = request.qs()
 
     const stores = await Store.query()
       .select('*')
-      .limit(10)
-      .offset(page * limit - limit)
+      .paginate(page, 10)
+
 
     return response.accepted({ stores })
   }
@@ -52,7 +51,7 @@ export default class StoresController {
       .whereHas('user', (query) => {
         query.where('id', id)
       })
-      .paginate(page)
+      .paginate(page, 10)
 
     return response.accepted({ stores })
   }
