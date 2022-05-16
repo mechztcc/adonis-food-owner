@@ -1,5 +1,4 @@
 import { test } from '@japa/runner'
-import Address from 'App/Models/Address'
 import { UserFactory } from 'Database/factories'
 
 test.group('Address address', () => {
@@ -19,8 +18,9 @@ test.group('Address address', () => {
     const response = await client.post('/addresses').json(address)
 
     const body = await response.body()
-    console.log(body);
     
     assert.exists(body.id)
+    assert.equal(body.user_id, user.id)
+
   })
 })
