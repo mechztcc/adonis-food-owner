@@ -18,8 +18,9 @@
 [ ] make relation With Categories
 
 -- ADDRESS --
-[ ] Create Address
+[X] Create Address
 [ ] Update Address
+[ ] Show Address By Store
 
 -- CATEGORIES -- 
 [ ] Create Categories
