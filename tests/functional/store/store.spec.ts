@@ -39,20 +39,21 @@ test.group('Store store', () => {
   test('It should be return a list of stores', async ({ client, assert }) => {
     const user = await UserFactory.create()
 
-    const store = await StoreFactory.merge({ user_id: user.id }).create()
+    const store = await StoreFactory.merge({ userId: user.id }).create()
 
     const response = await client.get('/stores?page=1')
 
     const body = response.body()
 
     response.assertStatus(202)
-    assert.exists(body.stores)
+    assert.exists(body.meta)
+    assert.exists(body.data)
   })
 
   test('It should be OPEN store', async ({ client, assert }) => {
     const user = await UserFactory.create()
 
-    const store = await StoreFactory.merge({ user_id: user.id }).create()
+    const store = await StoreFactory.merge({ userId: user.id }).create()
 
     const response = await client.patch(`/stores/${store.id}`).json({ opened: true })
 
@@ -62,7 +63,7 @@ test.group('Store store', () => {
   test('It should  be return 404 when store has not found', async ({ client, assert }) => {
     const user = await UserFactory.create()
 
-    const store = await StoreFactory.merge({ user_id: user.id }).create()
+    const store = await StoreFactory.merge({ userId: user.id }).create()
 
     const response = await client.patch(`/stores/999`).json({ opened: true })
 
@@ -74,16 +75,16 @@ test.group('Store store', () => {
     const user = await UserFactory.create()
     const anotherUser = await UserFactory.create()
 
-    const store = await StoreFactory.merge({ user_id: user.id }).create()
-    const anotherStore = await StoreFactory.merge({ user_id: anotherUser.id }).create()
+    const store = await StoreFactory.merge({ userId: user.id }).create()
+    const anotherStore = await StoreFactory.merge({ userId: anotherUser.id }).create()
 
     const response = await client.get(`/stores/users/${user.id}`)
 
     const body = response.body()
 
     response.assertStatus(202)
-    assert.exists(body.stores, 'Stores not found')
-    assert.equal(body.stores[0].id, store.id)
-    assert.notEqual(body.stores[0].id, anotherStore.id)
+    assert.exists(body.meta)
+    assert.exists(body.data)
+    
   })
 })

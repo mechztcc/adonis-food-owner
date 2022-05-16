@@ -21,12 +21,9 @@ export default class StoresController {
   public async index({ request, response }: HttpContextContract) {
     const { page } = request.qs()
 
-    const stores = await Store.query()
-      .select('*')
-      .paginate(page, 10)
+    const stores = await Store.query().select('*').paginate(page, 10)
 
-
-    return response.accepted({ stores })
+    return response.accepted(stores)
   }
 
   public async openOrClose({ request, response }: HttpContextContract) {
@@ -53,6 +50,6 @@ export default class StoresController {
       })
       .paginate(page, 10)
 
-    return response.accepted({ stores })
+    return response.accepted(stores)
   }
 }
