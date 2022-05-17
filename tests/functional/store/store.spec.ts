@@ -97,9 +97,9 @@ test.group('Store store', () => {
       .json({ name: 'Updated name', description: 'Updated description' })
 
     const body = await response.body()
-    console.log(body);
 
-    response.assertStatus(204)
-    
+    response.assertStatus(202)
+    assert.notEqual(attr.name, body.name)
+    assert.notEqual(attr.description, body.description)
   })
 })

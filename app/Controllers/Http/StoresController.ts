@@ -52,4 +52,17 @@ export default class StoresController {
 
     return response.accepted(stores)
   }
+
+  public async update({ request, response }: HttpContextContract) {
+    const id = await request.param('id')
+    const payload = await request.only(['name', 'description'])
+
+    const store = await Store.findByOrFail('id', id)
+
+    store.name = payload.name
+    store.description = payload.description
+    await store.save()
+
+    return response.accepted(store)
+  }
 }
