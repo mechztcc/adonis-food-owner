@@ -18,7 +18,10 @@ export const StoreFactory = Factory.define(Store, ({ faker }) => {
     active: true,
     opened: false,
   }
-}).build()
+})
+.relation('user', () => UserFactory)
+.build()
+
 
 export const AddressFactory = Factory.define(Address, ({ faker }) => {
   return {

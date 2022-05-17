@@ -86,4 +86,8 @@ test.group('Store store', () => {
     assert.exists(body.meta)
     assert.exists(body.data)
   })
+
+  test('It should be update store name and description', async ({ client }) => {
+    const store = await StoreFactory.with('user')
+  })
 })
