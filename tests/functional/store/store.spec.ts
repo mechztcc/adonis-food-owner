@@ -102,4 +102,21 @@ test.group('Store store', () => {
     assert.notEqual(attr.name, body.name)
     assert.notEqual(attr.description, body.description)
   })
+
+  test('It should be return 404 when try to update a nonexists store', async ({
+    client,
+    assert,
+  }) => {
+    const store = await StoreFactory.with('user').create()
+    const attr = store.$attributes
+
+    const response = await client
+      .put(`/stores/22`)
+      .json({ name: 'Updated name', description: 'Updated description' })
+
+    const body = await response.body()
+
+    response.assertStatus(404)
+    response.assertBodyContains({ code: 'BAD_REQUEST', message: 'Resource not found', status: 404 })
+  })
 })

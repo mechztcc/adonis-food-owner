@@ -9,7 +9,7 @@
 -- STORE --
 [X] Create Store
 [X] Make relation With User
-[ ] Update Store
+[X] Update Store
 [ ] Delete Store
 [X] Open / Close Store
 [X] List all Stores
