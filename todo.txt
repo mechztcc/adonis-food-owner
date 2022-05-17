@@ -14,7 +14,8 @@
 [X] Open / Close Store
 [X] List all Stores
 [X] List all Stores by User
-[ ] make relation With Categories
+[ ] Make relation With Categories
+[ ] Add image to Stores
 
 -- ADDRESS --
 [X] Create Address
