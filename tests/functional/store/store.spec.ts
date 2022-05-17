@@ -1,3 +1,4 @@
+import { assert } from '@japa/preset-adonis'
 import { test } from '@japa/runner'
 import { StoreFactory, UserFactory } from 'Database/factories'
 
@@ -87,7 +88,18 @@ test.group('Store store', () => {
     assert.exists(body.data)
   })
 
-  test('It should be update store name and description', async ({ client }) => {
-    const store = await StoreFactory.with('user')
+  test('It should be update store name and description', async ({ client, assert }) => {
+    const store = await StoreFactory.with('user').create()
+    const attr = store.$attributes
+
+    const response = await client
+      .put(`/stores/${attr.id}`)
+      .json({ name: 'Updated name', description: 'Updated description' })
+
+    const body = await response.body()
+    console.log(body);
+
+    response.assertStatus(204)
+    
   })
 })
