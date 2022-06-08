@@ -1,4 +1,3 @@
-import { assert } from '@japa/preset-adonis'
 import { test } from '@japa/runner'
 import { StoreFactory, UserFactory } from 'Database/factories'
 
