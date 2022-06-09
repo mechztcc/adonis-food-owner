@@ -63,4 +63,10 @@ test.group('Products products', () => {
     response.assertStatus(202)
   })
 
+  test('It should be return 404 when try to delete a nonexists product', async ({ client }) => {
+
+    const response = await client.delete('products/99')
+
+    response.assertBodyContains({ code: 'BAD_REQUEST', message: 'Product not found', status: 404 })
+  })
 })
