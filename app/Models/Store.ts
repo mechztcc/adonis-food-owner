@@ -1,7 +1,7 @@
+import { BaseModel, BelongsTo, belongsTo, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import { DateTime } from 'luxon'
-import { BaseModel, BelongsTo, belongsTo, column, HasMany, hasMany, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
-import User from './User'
 import Category from './Category'
+import User from './User'
 
 export default class Store extends BaseModel {
   @column({ isPrimary: true })
@@ -28,7 +28,7 @@ export default class Store extends BaseModel {
   public user: BelongsTo<typeof User>
 
   @hasMany(() => Category, {
-    foreignKey: 'storeId'
+    foreignKey: 'storeId',
   })
   public store: HasMany<typeof Category>
 
