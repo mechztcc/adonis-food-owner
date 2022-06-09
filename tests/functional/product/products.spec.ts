@@ -92,8 +92,6 @@ test.group('Products products', () => {
       category_id: category.$attributes.id,
     })
 
-    console.log(response.body());
-
     response.assertStatus(204)
   })
 })
