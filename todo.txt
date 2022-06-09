@@ -14,7 +14,7 @@
 [X] Open / Close Store
 [X] List all Stores
 [X] List all Stores by User
-[ ] Make relation With Categories 1 : N
+[X] Make relation With Categories 1 : N
 [ ] Add image to Stores
 
 -- ADDRESS --
@@ -24,7 +24,7 @@
 
 -- CATEGORIES --
 [X] Create Categories
-[ ] Update Categories
+[X] Update Categories
 [X] Delete Categories
 [ ] Make relation With Products 1 : N
 
