@@ -1,6 +1,7 @@
 import Factory from '@ioc:Adonis/Lucid/Factory'
 import Address from 'App/Models/Address'
 import Category from 'App/Models/Category'
+import Product from 'App/Models/Product'
 import Store from 'App/Models/Store'
 import User from 'App/Models/User'
 
@@ -42,4 +43,14 @@ export const CategoryFactory = Factory.define(Category, ({ faker }) => {
   }
 })
   .relation('store', () => StoreFactory)
+  .build()
+
+export const ProductFactory = Factory.define(Product, ({ faker }) => {
+  return {
+    name: faker.commerce.product(),
+    price: 10,
+    description: faker.commerce.productDescription(),
+  }
+})
+  .relation('category', () => CategoryFactory)
   .build()
