@@ -30,7 +30,7 @@
 
 -- PRODUCTS --
 [X] Create Products
-[ ] Update Products
+[X] Update Products
 [X] Delete Products
 
 -- DEPLOY --

@@ -46,6 +46,6 @@ export default class ProductsController {
 
     await productExists.save()
 
-    return response.status(204)
+    return response.status(204).send({})
   }
 }
