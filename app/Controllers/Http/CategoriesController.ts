@@ -17,4 +17,14 @@ export default class CategoriesController {
 
     return response.created(category)
   }
+
+  public async delete({ request, response }: HttpContextContract) {
+    const id = request.param('id')
+
+    const category = await Category.findByOrFail('id', id)
+
+    await category.delete()
+
+    return response.status(202).send({})
+  }
 }

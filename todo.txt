@@ -25,7 +25,7 @@
 -- CATEGORIES --
 [X] Create Categories
 [ ] Update Categories
-[ ] Delete Categories
+[X] Delete Categories
 [ ] Make relation With Products 1 : N
 
 -- PRODUCTS --
