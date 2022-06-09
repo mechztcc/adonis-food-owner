@@ -30,13 +30,17 @@ export default class CategoriesController {
   }
 
   public async update({ request, response }: HttpContextContract) {
-    const id = request.param('id')
+    const id = request.param('id') as Number
     const payload = await request.validate(UpdateCategoryValidator)
 
-    const category = await Category.findByOrFail('id', id)
+    const categoryExists = await Category.findBy('id', id)
 
-    category.name = payload.name
-    await category.save()
+    if (!categoryExists) {
+      throw new BadRequestException('Category not found', 404)
+    }
+
+    categoryExists.name = payload.name
+    await categoryExists.save()
 
     return response.status(204)
   }

@@ -52,4 +52,10 @@ test.group('Categories category', () => {
 
     response.assertStatus(204)
   })
+
+  test('It should be return 404 when try to update a nonexist category', async ({ client }) => {
+    const response = await client.put('/categories/1').json({ name: 'Updated name' })
+
+    response.assertBodyContains({ code: 'BAD_REQUEST', message: 'Category not found', status: 404 })
+  })
 })
