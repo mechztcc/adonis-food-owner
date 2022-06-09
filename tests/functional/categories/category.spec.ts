@@ -13,4 +13,12 @@ test.group('Categories category', () => {
     response.assertStatus(201)
     response.assertBodyContains({ store_id: attr.id })
   })
+
+  test('It should be return 404 when try to create an category with nonexist store', async ({
+    client,
+  }) => {
+    const response = await client.post('/categories').json({ name: 'Pizzas', store_id: 99 })
+
+    response.assertBodyContains({ code: 'BAD_REQUEST', message: 'Resource not found', status: 404 })
+  })
 })
