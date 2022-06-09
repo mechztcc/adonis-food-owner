@@ -31,7 +31,7 @@
 -- PRODUCTS --
 [X] Create Products
 [ ] Update Products
-[ ] Delete Products
+[X] Delete Products
 
 -- DEPLOY --
 [ ] Prepare docker image
