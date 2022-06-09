@@ -1,9 +1,11 @@
 FROM node:16.13.0
 
-WORKDIR /app
-COPY ./ /app/
+WORKDIR /usr/src/
+
+COPY ./ /usr/src
 
 RUN npm install
 
-CMD [ "node", "ace", "serve" ]
 EXPOSE 3030
+
+RUN node ace serve start
