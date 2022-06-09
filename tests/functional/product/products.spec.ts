@@ -43,4 +43,24 @@ test.group('Products products', () => {
 
     response.assertBodyContains({ code: 'BAD_REQUEST', message: 'Category not found', status: 404 })
   })
+
+  test('It should be delete a product by id', async ({ client }) => {
+    const store = await StoreFactory.with('user').create()
+
+    const category = await CategoryFactory.merge({ storeId: store.$attributes.id }).create()
+
+    const data = await client.post('/products').json({
+      name: 'Mussarela P',
+      price: 22.0,
+      description: 'Alot of cheese',
+      available: false,
+      category_id: category.$attributes.id,
+    })
+
+    const body = data.body()
+    const response = await client.delete(`/products/${body.id}`)
+
+    response.assertStatus(202)
+  })
+
 })

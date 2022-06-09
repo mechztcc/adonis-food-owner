@@ -16,4 +16,15 @@ export default class ProductsController {
     const product = await Product.create(payload)
     return response.created(product)
   }
+
+  public async delete({ request, response }: HttpContextContract) {
+    const id = request.param('id')
+
+    const productExists = await Product.findBy('id', id)
+    if (!productExists) {
+      throw new BadRequestException('Product not found', 404)
+    }
+
+    return response.status(202).send({})
+  }
 }
