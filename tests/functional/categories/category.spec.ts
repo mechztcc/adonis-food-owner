@@ -39,14 +39,12 @@ test.group('Categories category', () => {
     response.assertBodyContains({ code: 'BAD_REQUEST', message: 'Resource not found', status: 404 })
   })
 
-  test('It should be update an category name', async ({ client, assert}) => {
+  test('It should be update an category name', async ({ client, assert }) => {
     const store = await StoreFactory.with('user').create()
     const attr = store.$attributes
 
     const category = await CategoryFactory.merge({ storeId: attr.id }).create()
     const categoryAttr = category.$attributes
-
-    console.log(categoryAttr)
 
     const response = await client
       .put(`/categories/${categoryAttr.id}`)

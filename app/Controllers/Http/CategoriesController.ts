@@ -3,6 +3,7 @@ import BadRequestException from 'App/Exceptions/BadRequestException'
 import Category from 'App/Models/Category'
 import Store from 'App/Models/Store'
 import CreateCategoryValidator from 'App/Validators/CreateCategoryValidator'
+import UpdateCategoryValidator from 'App/Validators/UpdateCategoryValidator'
 
 export default class CategoriesController {
   public async store({ request, response }: HttpContextContract) {
@@ -26,5 +27,17 @@ export default class CategoriesController {
     await category.delete()
 
     return response.status(202).send({})
+  }
+
+  public async update({ request, response }: HttpContextContract) {
+    const id = request.param('id')
+    const payload = await request.validate(UpdateCategoryValidator)
+
+    const category = await Category.findByOrFail('id', id)
+
+    category.name = payload.name
+    await category.save()
+
+    return response.status(204)
   }
 }
