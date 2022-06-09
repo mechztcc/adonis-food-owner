@@ -23,7 +23,7 @@
 [X] Show Address By User
 
 -- CATEGORIES --
-[ ] Create Categories
+[X] Create Categories
 [ ] Update Categories
 [ ] Delete Categories
 [ ] Make relation With Products 1 : N

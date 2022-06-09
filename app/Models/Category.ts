@@ -15,7 +15,7 @@ export default class Category extends BaseModel {
   @belongsTo(() => Store, {
     localKey: 'id',
   })
-  public user: BelongsTo<typeof Store>
+  public store: BelongsTo<typeof Store>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

@@ -21,4 +21,8 @@ test.group('Categories category', () => {
 
     response.assertBodyContains({ code: 'BAD_REQUEST', message: 'Resource not found', status: 404 })
   })
+
+  test('It should be delete an category by id', async ({ client }) => {
+    const store = await StoreFactory.with('user').create()
+  })
 })
