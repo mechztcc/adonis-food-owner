@@ -26,10 +26,10 @@
 [X] Create Categories
 [X] Update Categories
 [X] Delete Categories
-[ ] Make relation With Products 1 : N
+[X] Make relation With Products 1 : N
 
 -- PRODUCTS --
-[ ] Create Products
+[X] Create Products
 [ ] Update Products
 [ ] Delete Products
 
