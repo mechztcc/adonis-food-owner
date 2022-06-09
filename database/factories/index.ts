@@ -45,12 +45,4 @@ export const CategoryFactory = Factory.define(Category, ({ faker }) => {
   .relation('store', () => StoreFactory)
   .build()
 
-export const ProductFactory = Factory.define(Product, ({ faker }) => {
-  return {
-    name: faker.commerce.product(),
-    price: 10,
-    description: faker.commerce.productDescription(),
-  }
-})
-  .relation('category', () => CategoryFactory)
-  .build()
+

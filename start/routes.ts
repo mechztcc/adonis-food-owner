@@ -24,6 +24,7 @@ import './stores/store.routes'
 import './users/user.routes'
 import './addresses/address.routes'
 import './categories/category.routes'
+import './products/products.routes'
 
 Route.get('/', async () => {
   return { hello: 'world' }
