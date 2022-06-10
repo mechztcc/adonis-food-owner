@@ -27,11 +27,14 @@
 [X] Update Categories
 [X] Delete Categories
 [X] Make relation With Products 1 : N
+[ ] List by id with Products
 
 -- PRODUCTS --
 [X] Create Products
 [X] Update Products
 [X] Delete Products
+[ ] List Products by id
+[ ] List Products by Store
 
 -- DEPLOY --
 [ ] Prepare docker image
