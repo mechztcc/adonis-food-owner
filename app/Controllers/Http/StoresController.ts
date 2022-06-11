@@ -65,4 +65,12 @@ export default class StoresController {
 
     return response.accepted(store)
   }
+
+  public async byLoggedUser({ request, response, auth }: HttpContextContract) {
+    const user = await auth.authenticate()
+
+    const store = await Store.findByOrFail('user_id', user.id)
+
+    return response.accepted(store)
+  }
 }

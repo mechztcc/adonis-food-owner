@@ -16,6 +16,8 @@
 [X] List all Stores by User
 [X] Make relation With Categories 1 : N
 [ ] Add image to Stores
+[X] Return name / images / description of Store by user
+[ ] Return store details by access token
 
 -- ADDRESS --
 [X] Create Address

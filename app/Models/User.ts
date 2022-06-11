@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, beforeSave, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, beforeSave, column, HasMany, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
 import Hash from '@ioc:Adonis/Core/Hash'
 import Store from './Store'
 import Address from './Address'
@@ -16,9 +16,10 @@ export default class User extends BaseModel {
 
   @column()
   public password: string
-  
+
   @column()
   public status: string
+
 
   @hasOne(() => Store, {
     foreignKey: 'userId'
