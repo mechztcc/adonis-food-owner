@@ -118,4 +118,26 @@ test.group('Store store', () => {
     response.assertStatus(404)
     response.assertBodyContains({ code: 'BAD_REQUEST', message: 'Resource not found', status: 404 })
   })
+
+  test('It should be return a store by logged user', async ({ client }) => {
+    const user = await UserFactory.merge({ password: '123456', email: 'teste@email.com' }).create()
+
+    const store = await StoreFactory.merge({ userId: user.$attributes.id }).create()
+
+    const auth = await client.post('/auth').json({ email: 'teste@email.com', password: '123456' })
+
+    const body = auth.body()
+
+    const token = `${body.type} ${body.token}`
+
+    const response = await client.get('/stores/users').header('Authorization', token)
+
+    response.assertStatus(202)
+
+    response.assertBodyContains({
+      id: store.$attributes.id,
+      name: store.$attributes.name,
+      user_id: user.$attributes.id,
+    })
+  })
 })
