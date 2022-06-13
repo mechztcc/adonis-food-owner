@@ -1,6 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Store from 'App/Models/Store'
 import User from 'App/Models/User'
+import CreateStoreByLoggedUserValidator from 'App/Validators/CreateStoreByLoggedUserValidator'
 import CreateStoreValidator from 'App/Validators/CreateStoreValidator'
 import OpenStoreValidator from 'App/Validators/OpenStoreValidator'
 import BadRequestException from '../../Exceptions/BadRequestException'
@@ -72,5 +73,20 @@ export default class StoresController {
     const store = await Store.findByOrFail('user_id', user.id)
 
     return response.accepted(store)
+  }
+
+  public async createByLoggedUser({ request, response, auth }: HttpContextContract) {
+    const payload = await request.validate(CreateStoreByLoggedUserValidator)
+    const user = await auth.authenticate()
+
+    const store = await Store.create({
+      name: payload.name,
+      description: payload.description,
+      active: true,
+      opened: false,
+      userId: user.id,
+    })
+
+    return response.created()
   }
 }
