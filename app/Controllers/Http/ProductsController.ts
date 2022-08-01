@@ -48,4 +48,16 @@ export default class ProductsController {
 
     return response.status(204).send({})
   }
+
+  public async find({ request, response }: HttpContextContract) {
+    const id = request.param('id')
+
+    const productExists = await Product.findBy('id', id)
+    if(!productExists) {
+      throw new BadRequestException('Product not found', 404)
+    }
+
+
+    return response.status(204).json(productExists)
+  }
 }
