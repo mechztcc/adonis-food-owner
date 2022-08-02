@@ -56,8 +56,7 @@ export default class ProductsController {
     if(!productExists) {
       throw new BadRequestException('Product not found', 404)
     }
-
-
-    return response.status(204).json(productExists)
+    
+    return response.accepted(productExists)
   }
 }

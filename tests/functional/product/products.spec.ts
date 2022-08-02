@@ -103,7 +103,12 @@ test.group('Products products', () => {
     const product = await ProductFactory.merge({ categoryId: category.$attributes.id }).create()
 
     const response = await client.get(`/products/${product.$attributes.id}`)
-    console.log(response.body());
-    
+
+    const body = response.body()
+
+    response.assertStatus(202)
+    response.assertBodyContains({
+      id: product.$attributes.id,
+    })
   })
 })
