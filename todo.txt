@@ -36,7 +36,7 @@
 [X] Create Products
 [X] Update Products
 [X] Delete Products
-[ ] List Products by id
+[X] List Products by id
 [ ] List Products by Store
 
 -- DEPLOY --

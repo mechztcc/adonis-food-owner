@@ -1,6 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import BadRequestException from 'App/Exceptions/BadRequestException'
 import Category from 'App/Models/Category'
+import Product from 'App/Models/Product'
 import Store from 'App/Models/Store'
 import CreateCategoryValidator from 'App/Validators/CreateCategoryValidator'
 import UpdateCategoryValidator from 'App/Validators/UpdateCategoryValidator'
@@ -43,5 +44,13 @@ export default class CategoriesController {
     await categoryExists.save()
 
     return response.status(204)
+  }
+
+  public async find({ request, response }: HttpContextContract) {
+    const id = request.param('id')
+
+    const products = await Product.query().where('category_id', id)
+
+    return response.accepted(products)
   }
 }

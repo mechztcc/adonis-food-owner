@@ -1,5 +1,5 @@
 import { test } from '@japa/runner'
-import { CategoryFactory, StoreFactory } from 'Database/factories'
+import { CategoryFactory, ProductFactory, StoreFactory } from 'Database/factories'
 
 test.group('Categories category', () => {
   test('It should  be create a category', async ({ client, assert }) => {
@@ -57,5 +57,17 @@ test.group('Categories category', () => {
     const response = await client.put('/categories/99').json({ name: 'Updated name' })
 
     response.assertBodyContains({ code: 'BAD_REQUEST', message: 'Category not found', status: 404 })
+  })
+
+  test('It should be return a category by id with all products', async ({ client }) => {
+    const store = await StoreFactory.with('user').create()
+
+    const category = await CategoryFactory.merge({ storeId: store.$attributes.id }).create()
+
+    const product = await ProductFactory.merge({ categoryId: category.$attributes.id }).create()
+
+    const response = await client.get(`/categories/${category.$attributes.id}/products`)
+    response.assertStatus(202)
+    
   })
 })
