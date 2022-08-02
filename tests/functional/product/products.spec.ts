@@ -1,5 +1,5 @@
 import { test } from '@japa/runner'
-import { CategoryFactory, StoreFactory } from 'Database/factories'
+import { CategoryFactory, ProductFactory, StoreFactory } from 'Database/factories'
 
 test.group('Products products', () => {
   test('It should be create a product', async ({ client }) => {
@@ -93,5 +93,17 @@ test.group('Products products', () => {
     })
 
     response.assertStatus(204)
+  })
+
+  test('It should be find a product by id', async ({ client, assert }) => {
+    const store = await StoreFactory.with('user').create()
+
+    const category = await CategoryFactory.merge({ storeId: store.$attributes.id }).create()
+
+    const product = await ProductFactory.merge({ categoryId: category.$attributes.id }).create()
+
+    const response = await client.get(`/products/${product.$attributes.id}`)
+    console.log(response.body());
+    
   })
 })

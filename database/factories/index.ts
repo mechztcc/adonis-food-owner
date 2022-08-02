@@ -46,3 +46,12 @@ export const CategoryFactory = Factory.define(Category, ({ faker }) => {
   .build()
 
 
+export const ProductFactory = Factory.define(Product, ({ faker }) => {
+  return {
+    name: faker.commerce.product(),
+    price: Number(faker.commerce.price(100)),
+    description: faker.commerce.productDescription(),
+    available: true,
+    categoryId: 0
+  }
+}).build()
