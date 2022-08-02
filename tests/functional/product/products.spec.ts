@@ -111,4 +111,19 @@ test.group('Products products', () => {
       id: product.$attributes.id,
     })
   })
+
+  test('It should be return 404 when try to find a nonexists product', async ({
+    client,
+    assert,
+  }) => {
+    const response = await client.get(`/products/100`)
+
+    response.assertStatus(404)
+
+    response.assertBodyContains({
+      code: 'BAD_REQUEST',
+      message: 'Product not found',
+      status: 404,
+    })
+  })
 })
