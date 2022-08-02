@@ -53,4 +53,28 @@ test.group('Address address', () => {
     assert.exists(body)
     assert.exists(body[0].id, 'Address not found')
   })
+
+  test('It should be update a address by id', async ({ client }) => {
+    const user = await UserFactory.create()
+    const address = await AddressFactory.with('user').create()
+
+    const response = await client.put(`/addresses/${address.$attributes.id}`).json({
+      zip: '54900000',
+      street: 'updated street',
+      number: 'updated number',
+      city: 'updated city',
+      complement: 'updated complement',
+      state: 'state',
+    })
+
+    response.assertStatus(202)
+    response.assertBodyContains({
+      zip: '54900000',
+      street: 'updated street',
+      number: 'updated number',
+      city: 'updated city',
+      complement: 'updated complement',
+      state: 'state',
+    })
+  })
 })

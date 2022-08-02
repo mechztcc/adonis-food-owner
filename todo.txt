@@ -22,7 +22,7 @@
 
 -- ADDRESS --
 [X] Create Address
-[ ] Update Address
+[X] Update Address
 [X] Show Address By User
 
 -- CATEGORIES --
@@ -30,7 +30,7 @@
 [X] Update Categories
 [X] Delete Categories
 [X] Make relation With Products 1 : N
-[ ] List by id with Products
+[X] List by id with Products
 
 -- PRODUCTS --
 [X] Create Products
