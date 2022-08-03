@@ -41,3 +41,4 @@
 
 -- DEPLOY --
 [ ] Prepare docker image
+[ ] Check health status
