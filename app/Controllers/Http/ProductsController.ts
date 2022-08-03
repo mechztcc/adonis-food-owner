@@ -2,6 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import BadRequestException from 'App/Exceptions/BadRequestException'
 import Category from 'App/Models/Category'
 import Product from 'App/Models/Product'
+import Store from 'App/Models/Store'
 import CreateProductValidator from 'App/Validators/CreateProductValidator'
 import UpdateProductValidator from 'App/Validators/UpdateProductValidator'
 
@@ -53,10 +54,25 @@ export default class ProductsController {
     const id = request.param('id')
 
     const productExists = await Product.findBy('id', id)
-    if(!productExists) {
+    if (!productExists) {
       throw new BadRequestException('Product not found', 404)
     }
-    
+
     return response.accepted(productExists)
+  }
+
+  public async findByStore({ request, response }: HttpContextContract) {
+    const id = request.param('id')
+
+    const store = await Store.findBy('id', id)
+    const category = await Category.query().preload('store')
+    if (!store) {
+      throw new BadRequestException('Store not found', 404)
+    }
+    
+    // const products = await Product.query().where()
+
+
+    return response.accepted(category)
   }
 }

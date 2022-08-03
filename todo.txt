@@ -37,7 +37,7 @@
 [X] Update Products
 [X] Delete Products
 [X] List Products by id
-[ ] List Products by Store
+[ ] List Products by Category
 
 -- DEPLOY --
 [ ] Prepare docker image

@@ -126,4 +126,12 @@ test.group('Products products', () => {
       status: 404,
     })
   })
+
+  test('It should be return all products by store_id', async ({ client }) => {
+    const store = await StoreFactory.with('user').create()
+
+    console.log(store);
+    
+    // const response = await client.get()
+  })
 })
