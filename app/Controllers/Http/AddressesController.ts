@@ -48,4 +48,21 @@ export default class AddressesController {
 
     return response.accepted(address)
   }
+
+  public async findByLoggedUser({ request, response, auth }: HttpContextContract) {
+    const user = auth.user
+    const id = user?.id ?? 0
+
+    const address = await Address.query()
+      .select('*')
+      .whereHas('user', (query) => {
+        query.where('user_id', id)
+      })
+
+    if (!address) {
+      throw new BadRequestException('Address not found', 404)
+    }
+
+    return response.ok(address)
+  }
 }
